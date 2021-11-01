@@ -2,24 +2,38 @@ import { useState, useEffect } from "react";
 import { projectFirestore } from '../firebase/config';
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null)
+
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(()=>{
     fetch(url)
     .then((response)=>{
-      return response.json()
+      if (!response.ok){
+        throw Error(response.status);
+      };
+      return response.json();
     })
     .then((data)=>{
-      console.log(data)
-      setData(data)
       data.forEach((item) => {
         projectFirestore.collection('Beers').add({
-          item
-        }) 
-      })  
+          name: item.name,
+          tagline: item.tagline,
+          description: item.description,
+          image_url: item.image_url,
+          volume: item.volume,
+          ingredients: item.ingredients
+        }); 
+      });
+      setLoading(false);  
     })
-  }, [url])
+    .catch((error)=>{
+      setError(error.message);
+      setLoading(false);
+    });
+  }, [url]);
 
-  return {data};
-}
+  return {error, loading};
+};
  
 export default useFetch;

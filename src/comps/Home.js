@@ -1,16 +1,19 @@
 import  useFetch  from '../hooks/useFetch';
+import  useFirestore  from '../hooks/useFirestore';
 
 const Home = () => {
-  const {data:beers} = useFetch('https://api.punkapi.com/v2/beers')
-  
+  const {error, loading} = useFetch('https://api.punkapi.com/v2/beers');
+  const {docs} = useFirestore('Beers');
+
+  console.log(docs)
 
   return ( 
     <div className="home">
-      {beers && beers.map((beer)=>(
-        <div className="beer-div" key={beer.id}>
-          {beer.name}
-        </div>
+      {docs && docs.map((doc)=>(
+        <div className="doc-div" key={doc.id}>{doc.id} {doc.description}</div>
       ))}
+      {error && <div>{error}</div>}
+      {loading && <div>Loading...</div>}
     </div>
    );
 }
