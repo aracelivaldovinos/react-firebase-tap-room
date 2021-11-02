@@ -23,6 +23,7 @@ const useFetch = (url) => {
           image_url: item.image_url,
           volume: item.volume,
           ingredients: item.ingredients
+          
         }); 
       });
       setLoading(false);  
