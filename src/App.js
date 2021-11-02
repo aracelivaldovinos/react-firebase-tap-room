@@ -18,7 +18,7 @@ function App() {
           <Route path="/create">
             <AddForm/>
           </Route>
-          <Route path="/edit">
+          <Route path="/edit/:id">
             <EditForm />
           </Route>
         </Switch>

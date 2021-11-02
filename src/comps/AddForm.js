@@ -44,7 +44,7 @@ const AddForm = () => {
   };
 
   return ( 
-    <div className="add-form">
+    <div className="form">
       <ReusableForm 
       name = {name}
       setName = {setName}

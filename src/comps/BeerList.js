@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {Card, Row, Col} from 'react-bootstrap';
 
 const BeerList = ({docs, handleDelete}) => {
@@ -21,9 +22,10 @@ const BeerList = ({docs, handleDelete}) => {
                   <button>Sell</button>
                   <button>Restock</button>
                   <button>
-                    
+                    <Link to={`/edit/${doc.id}`}>
                     Edit
-                    </button>
+                    </Link>
+                  </button>
                 </div>
               </Card.Text>
             </Card.Body>

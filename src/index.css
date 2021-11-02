@@ -44,24 +44,24 @@ body{
   color: white;
 }
 
-.add-form{
+.form{
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
 }
 
-.add-form label {
+.form label {
   text-align: left;
   display: block;
 }
 
-.add-form h2 {
+.form h2 {
   font-size: 20px;
   color: #4e4e4e;
   margin-bottom: 10px;
 }
 
-.add-form input {
+.form input {
   width: 100%;
   height: 50px;
   padding: 6px 10px;
@@ -72,7 +72,7 @@ body{
   font-size: 16px;
 }
 
-.add-form textarea{
+.form textarea{
   width: 100%;
   height: 150px;
   padding: 6px 10px;
@@ -83,7 +83,7 @@ body{
   font-size: 16px;
 }
 
-.add-form button {
+.form button {
   background: var(--primary);
   color: #fff;
   border: 0;
