@@ -1,11 +1,10 @@
 import  useFetch  from '../hooks/useFetch';
 import  useFirestore  from '../hooks/useFirestore';
+import AddForm from './AddForm';
 
 const Home = () => {
   // const {error, loading} = useFetch('https://api.punkapi.com/v2/beers');
   const {docs} = useFirestore('Beers');
-
-  // console.log(docs.data)
 
   return ( 
     <div className="home">
@@ -14,6 +13,7 @@ const Home = () => {
       ))}
       {/* {error && <div>{error}</div>}
       {loading && <div>Loading...</div>} */}
+      <AddForm />
     </div>
    );
 }
