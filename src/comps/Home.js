@@ -14,9 +14,22 @@ const Home = () => {
     projectFirestore.collection('Beers').doc(id).delete();
   }
 
+  const onClickingSell = (id) =>{
+    // const value = parseInt(stringValue);
+    // const keg = {unit, value};
+    // projectFirestore.collection('Beers').doc(id).update({
+    //   name: name,
+    //   tagline: tagline,
+    //   description: description,
+    //   keg: keg
+    // })
+    // console.log(id)
+  
+  }
+
   return ( 
     <div className="home">
-      <BeerList docs={docs} handleDelete={onClickingDelete}/>
+      <BeerList docs={docs} handleDelete={onClickingDelete} handleSell={onClickingSell}/>
     </div>
    );
 }

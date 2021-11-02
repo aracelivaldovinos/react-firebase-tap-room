@@ -33,7 +33,7 @@ const EditForm = () => {
 
   return ( 
     <div className="form">
-      Edit Form - {id}
+      {/* Edit Form - {id} */}
       <ReusableForm 
       name = {name}
       setName = {setName}
