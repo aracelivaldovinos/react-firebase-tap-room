@@ -1,5 +1,8 @@
+
 import Home from './comps/Home';
 import Title from './comps/Title';
+import AddForm from './comps/AddForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

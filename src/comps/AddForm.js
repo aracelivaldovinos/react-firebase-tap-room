@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { projectFirestore } from "../firebase/config";
+import ReusableForm from "./ReusableForm";
 
 const AddForm = () => {
   const [name, setName ] = useState('');
@@ -44,57 +45,19 @@ const AddForm = () => {
 
   return ( 
     <div className="add-form">
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          name="name"
-          value = {name} 
-          onChange = {(e)=> setName(e.target.value)}
-          placeholder="Storm"
-          required/>
-
-          <input 
-          type="text" 
-          name="tagline"
-          value = {tagline}
-          onChange = {(e)=> setTagline(e.target.value)} 
-          placeholder="Islay Whisky Aged IPA."
-          required/>
-
-          <input 
-          type="text" 
-          name="units"
-          value = {unit}
-          onChange = {(e)=> setUnit(e.target.value)} 
-          placeholder="Litres"
-          required/>
-
-          <input 
-          type="number" 
-          name="amount"
-          min="0"
-          value = {stringValue}
-          onChange = {(e)=> setValue(e.target.value)} 
-          placeholder="5"
-          required/>
-
-          {/* <input 
-          type="file" 
-          name="image"
-          value = {image_url}
-          onChange = {changeHandler}  
-          placeholder="Image"
-          /> */}
-
-          <textarea
-          name="description"
-          value = {description} 
-          onChange = {(e)=> setDescription(e.target.value)}
-          placeholder="Dark and powerful Islay magic infuses this tropical sensation of an IPA..."
-          >
-          </textarea>  
-          <input type="submit" value="Submit" />
-      </form>
+      <ReusableForm 
+      name = {name}
+      setName = {setName}
+      tagline = {tagline}
+      setTagline = {setTagline}
+      description = {description}
+      setDescription = {setDescription}
+      unit = {unit}
+      set = {setUnit}
+      stringValue = {stringValue}
+      setValue = {setValue}
+      handleSubmit = {handleSubmit}
+      />
     </div>
    );
 }

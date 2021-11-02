@@ -15,6 +15,7 @@ const useFetch = (url) => {
       return response.json();
     })
     .then((data)=>{
+      console.log(data)
       data.forEach((item) => {
         projectFirestore.collection('Beers').add({
           name: item.name,
@@ -22,8 +23,8 @@ const useFetch = (url) => {
           description: item.description,
           image_url: item.image_url,
           volume: item.volume,
-          ingredients: item.ingredients
-          
+          keg: {amount: 200, unit: 'pints'}
+         
         }); 
       });
       setLoading(false);  
