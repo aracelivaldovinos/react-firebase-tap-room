@@ -1,25 +1,46 @@
 import { useState } from "react";
-// import { projectFirestore } from "../firebase/config";
+import { projectFirestore } from "../firebase/config";
 
 const AddForm = () => {
   const [name, setName ] = useState('');
   const [tagline, setTagline] = useState('');
   const [description, setDescription] = useState('');
-  const [image_url, setImage_url ] = useState(null);
 
-  const [volume, setVolume ] = useState({});
-  const [unit, setUnit] = useState('')
-  const [value, setValue] = useState(0)
+  // const [image_url, setImage_url ] = useState(null);
+  // const [error, setError] = useState(null);
+  // const types = ['image/png', 'image/jpeg'];
+
+  
+  const [unit, setUnit] = useState('');
+  const [stringValue, setValue] = useState(0);
+
+  // const changeHandler = (e) =>{
+  //   e.preventDefault();
+  //  let image = (e.target.files[0].name);
+  //  console.log(image)
+  //  if (image && types.includes(image.type)){
+  //    setImage_url(image);
+  //    setError('')
+  //  }else {
+  //    setImage_url(null);
+  //    setError('Please select an image file (png or jpeg)')
+  //  }
+  // }
+
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    setVolume({unit, value});
-    console.log(volume)
-    console.log(e)
-    // projectFirestore.collection('Beers').add({
-
-    //   })
-  }
+    const value = parseInt(stringValue);
+    const volume = {unit, value};
+    
+    projectFirestore.collection('Beers').add({
+      name: name,
+      tagline: tagline,
+      description: description,
+      // image_url: image_url,
+      volume: volume
+    });
+  };
 
   return ( 
     <div className="add-form">
@@ -52,18 +73,18 @@ const AddForm = () => {
           type="number" 
           name="amount"
           min="0"
-          value = {value}
+          value = {stringValue}
           onChange = {(e)=> setValue(e.target.value)} 
           placeholder="5"
           required/>
 
-          <input 
+          {/* <input 
           type="file" 
           name="image"
-          onChange = {(e)=> setImage_url(e.target.value)}
-          value = {image_url}  
+          value = {image_url}
+          onChange = {changeHandler}  
           placeholder="Image"
-          />
+          /> */}
 
           <textarea
           name="description"
