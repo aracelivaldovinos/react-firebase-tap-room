@@ -1,16 +1,29 @@
-
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './comps/Home';
 import Title from './comps/Title';
 import AddForm from './comps/AddForm';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import EditForm from './comps/EditForm';
+
 
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <Title />
-      <Home />
-    </div>
+        <Switch>
+          <Route exact path ="/">
+            <Home/>
+          </Route>
+          <Route path="/create">
+            <AddForm/>
+          </Route>
+          <Route path="/edit">
+            <EditForm />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -1,8 +1,9 @@
 // import  useFetch  from '../hooks/useFetch';
 import  useFirestore  from '../hooks/useFirestore';
 import { projectFirestore } from '../firebase/config';
-import AddForm from './AddForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import BeerList from './BeerList';
+
 
 
 const Home = () => {
@@ -16,7 +17,6 @@ const Home = () => {
   return ( 
     <div className="home">
       <BeerList docs={docs} handleDelete={onClickingDelete}/>
-      <AddForm />
     </div>
    );
 }

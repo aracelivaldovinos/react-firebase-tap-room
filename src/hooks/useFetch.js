@@ -23,7 +23,7 @@ const useFetch = (url) => {
           description: item.description,
           image_url: item.image_url,
           volume: item.volume,
-          keg: {amount: 200, unit: 'pints'}
+          keg: {unit: 'pints', value: 200}
          
         }); 
       });

@@ -17,10 +17,13 @@ const BeerList = ({docs, handleDelete}) => {
                   {doc.tagline}
                 </div>
                 <div className="amount">
-                  <h2>Pints: {doc.keg.amount}</h2>
+                  <h2>Pints: {doc.keg.value}</h2>
                   <button>Sell</button>
                   <button>Restock</button>
-                  <button>Edit</button>
+                  <button>
+                    
+                    Edit
+                    </button>
                 </div>
               </Card.Text>
             </Card.Body>

@@ -32,14 +32,14 @@ const AddForm = () => {
   const handleSubmit = (e) =>{
     e.preventDefault();
     const value = parseInt(stringValue);
-    const volume = {unit, value};
+    const keg = {unit, value};
     
     projectFirestore.collection('Beers').add({
       name: name,
       tagline: tagline,
       description: description,
       // image_url: image_url,
-      volume: volume
+      keg: keg
     });
   };
 
@@ -53,7 +53,7 @@ const AddForm = () => {
       description = {description}
       setDescription = {setDescription}
       unit = {unit}
-      set = {setUnit}
+      setUnit = {setUnit}
       stringValue = {stringValue}
       setValue = {setValue}
       handleSubmit = {handleSubmit}
