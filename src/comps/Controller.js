@@ -5,6 +5,7 @@ import { projectFirestore } from '../firebase/config';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BeerList from './BeerList';
 import AddForm from './AddForm';
+import EditForm from './EditForm';
 
 
 
@@ -48,6 +49,16 @@ const Home = () => {
       keg: beer.keg
   
     });
+  };
+
+  const onClickingEdit = (beer, id) =>{
+    projectFirestore.collection('Beers').doc(id).update({
+      name: beer.name,
+      description: beer.description,
+      tagline: beer.tagline,
+      // image_url: beer.image_url,
+      keg: beer.keg
+    })
 
   }
 
@@ -55,6 +66,7 @@ const Home = () => {
     <div className="home">
       <BeerList docs={docs} handleDelete={onClickingDelete} handleSell={onClickingSell}/>
       <AddForm handleSubmitForm={onClickingAdd}/>
+      <EditForm handleSubmitForm={onClickingEdit}/>
     </div>
    );
 }

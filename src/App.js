@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './comps/Home';
+import Controller from './comps/Controller';
 import Title from './comps/Title';
 import AddForm from './comps/AddForm';
 import EditForm from './comps/EditForm';
@@ -13,7 +13,7 @@ function App() {
       <Title />
         <Switch>
           <Route exact path ="/">
-            <Home/>
+            <Controller/>
           </Route>
           <Route path="/create">
             <AddForm/>
