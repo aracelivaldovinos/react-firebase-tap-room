@@ -1,35 +1,37 @@
+import { useState } from 'react';
 import {Link} from 'react-router-dom';
-import {Card, Row, Col} from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
+import { projectFirestore } from '../firebase/config';
+import Beer from './Beer';
 
-const BeerList = ({docs, handleDelete, handleSell}) => {
+
+const BeerList = ({docs, handleDelete}) => {
+  
+  const handleSell = (id) =>{
+    const sellKeg = docs.filter((doc)=>doc.id === id)
+    let value = sellKeg[0].keg.value
+    const unit = sellKeg[0].keg.unit
+    value--
+    const keg = {unit, value}
+    projectFirestore.collection('Beers').doc(id).update({
+      keg: keg
+    })
+  }
   
   return ( 
     <Row>
     {docs && docs.map((doc)=>(
       <Col>
         <div className="doc-div" key={doc.id}>
-          <Card style={{ width: '18rem' }}>
-            <div className="cross" onClick={()=>handleDelete(doc.id)}>x</div>
-            <Card.Img variant="top" src={doc.image_url} style={{ height: '225px', width: '75px'}}/>
-            <Card.Body className="card-body">
-              <Card.Title>{doc.name}</Card.Title>
-              <Card.Text>
-                <div className="tagline">
-                  {doc.tagline}
-                </div>
-                <div className="amount">
-                  <h2>Pints: {doc.keg.value}</h2>
-                  <button onClick={()=>handleSell(doc.id)}>Sell</button>
-                  <button>Restock</button>
-                  <button>
-                    <Link to={`/edit/${doc.id}`}>
-                    Edit
-                    </Link>
-                  </button>
-                </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <Beer 
+          name = {doc.name}
+          tagline = {doc.tagline}
+          keg = {doc.keg}
+          id = {doc.id}
+          image_url = {doc.image_url}
+          handleSell = {handleSell}
+          handleDelete = {handleDelete}
+          />
         </div>
       </Col>
     ))}
