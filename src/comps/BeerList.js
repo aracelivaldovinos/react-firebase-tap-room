@@ -1,23 +1,9 @@
-import { useState } from 'react';
-import {Link} from 'react-router-dom';
 import { Row, Col} from 'react-bootstrap';
-import { projectFirestore } from '../firebase/config';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Beer from './Beer';
 
 
-const BeerList = ({docs, handleDelete}) => {
-  
-  const handleSell = (id) =>{
-    const sellKeg = docs.filter((doc)=>doc.id === id)
-    let value = sellKeg[0].keg.value
-    const unit = sellKeg[0].keg.unit
-    value--
-    const keg = {unit, value}
-    projectFirestore.collection('Beers').doc(id).update({
-      keg: keg
-    })
-  }
-  
+const BeerList = ({docs, handleDelete, onClickEdit, handleSell, handleRestock}) => {
   return ( 
     <Row>
     {docs && docs.map((doc)=>(
@@ -30,7 +16,9 @@ const BeerList = ({docs, handleDelete}) => {
           id = {doc.id}
           image_url = {doc.image_url}
           handleSell = {handleSell}
+          handleRestock = {handleRestock}
           handleDelete = {handleDelete}
+          onClickEdit = {onClickEdit}
           />
         </div>
       </Col>

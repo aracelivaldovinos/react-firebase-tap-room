@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card'
 import {Link} from 'react-router-dom';
 
 
-const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete}) => {
+const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete, handleRestock}) => {
   let message = '';
   let sellButton
 
@@ -16,7 +16,7 @@ const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete}) => 
   }
   return ( 
     <div className="beer">
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem', height: '30rem', marginBottom: '10px' }}>
             <div className="cross" onClick={()=>handleDelete(id)}>x</div>
             <Card.Img variant="top" src={image_url} style={{ height: '225px', width: '75px'}}/>
             <Card.Body className="card-body">
@@ -31,7 +31,7 @@ const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete}) => 
                     {message}
                   </div>
                   {sellButton}
-                  <button>Restock</button>
+                  <button onClick={()=>handleRestock(id)}>Restock</button>
                   
                   <button>
                     <Link to={`/edit/${id}`}>

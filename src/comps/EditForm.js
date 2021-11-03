@@ -7,6 +7,7 @@ const EditForm = (props) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
+    console.log(e)
     const value = parseInt(e.target.amount.value)
     const unit = e.target.units.value
     const keg = {unit, value}
