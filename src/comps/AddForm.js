@@ -1,63 +1,68 @@
-import { useState } from "react";
-import { projectFirestore } from "../firebase/config";
 import ReusableForm from "./ReusableForm";
 
-const AddForm = () => {
-  const [name, setName ] = useState('');
-  const [tagline, setTagline] = useState('');
-  const [description, setDescription] = useState('');
-
-  // const [image_url, setImage_url ] = useState(null);
-  // const [error, setError] = useState(null);
-  // const types = ['image/png', 'image/jpeg'];
-
-  
-  const [unit, setUnit] = useState('');
-  const [stringValue, setValue] = useState(0);
-
-  // const changeHandler = (e) =>{
-  //   e.preventDefault();
-  //  let image = (e.target.files[0].name);
-  //  console.log(image)
-  //  if (image && types.includes(image.type)){
-  //    setImage_url(image);
-  //    setError('')
-  //  }else {
-  //    setImage_url(null);
-  //    setError('Please select an image file (png or jpeg)')
-  //  }
-  // }
-
+const AddForm = (props) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    const value = parseInt(stringValue);
-    const keg = {unit, value};
-    
-    projectFirestore.collection('Beers').add({
-      name: name,
-      tagline: tagline,
-      description: description,
-      // image_url: image_url,
+    const value = parseInt(e.target.amount.value)
+    const unit = e.target.units.value
+    const keg = {unit, value}
+    props.handleSubmitForm({
+      name: e.target.name.value,
+      tagline: e.target.tagline.value,
+      description: e.target.description.value,
       keg: keg
-    });
+    })
   };
 
   return ( 
     <div className="form">
-      <ReusableForm 
-      name = {name}
-      setName = {setName}
-      tagline = {tagline}
-      setTagline = {setTagline}
-      description = {description}
-      setDescription = {setDescription}
-      unit = {unit}
-      setUnit = {setUnit}
-      stringValue = {stringValue}
-      setValue = {setValue}
-      handleSubmit = {handleSubmit}
-      />
+    <form onSubmit={handleSubmit}>
+        <label><h2>Name:</h2></label>
+        <input 
+            type="text" 
+            name="name"
+            placeholder="Storm"
+            required
+          />
+          <label><h2>Tagline:</h2></label>
+          <input 
+            type="text" 
+            name="tagline"
+            placeholder="Islay Whisky Aged IPA."
+            required
+          />
+          <label><h2>Units:</h2></label>
+          <input 
+            type="text" 
+            name="units"
+            placeholder="Litres"
+            required
+          />
+          <label><h2>Amount:</h2></label>
+          <input 
+            type="number" 
+            name="amount"
+            min="0"
+            placeholder="5"
+            required
+          />
+
+          {/* <input 
+          type="file" 
+          name="image"
+          value = {image_url}
+          onChange = {changeHandler}  
+          placeholder="Image"
+          /> */}
+          <label><h2>Description:</h2></label>
+          <textarea
+            name="description"
+            placeholder="Dark and powerful Islay magic infuses this tropical sensation of an IPA..."
+          >
+          </textarea>  
+          <button type="submit">Submit</button>
+      </form>
     </div>
    );
 }
