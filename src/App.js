@@ -1,11 +1,10 @@
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { projectFirestore } from './firebase/config';
+
 import Controller from './comps/Controller';
 import Home from './comps/Homepage/Home';
 import Title from './comps/Title';
 import EditForm from './comps/EditForm';
-import { projectFirestore } from './firebase/config';
-
-
 
 function App() {
 
@@ -27,7 +26,7 @@ function App() {
           <Route exact path ="/">
             <Home/>
           </Route>
-          <Route exact path ="/inventory">
+          <Route path ="/inventory">
             <Controller/>
           </Route>
           <Route path="/edit/:id">
