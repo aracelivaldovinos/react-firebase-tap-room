@@ -22,26 +22,7 @@ body{
   letter-spacing: 2px;
   font-weight: normal;
   padding: 15px;
-}
-
-.cross{
-  float: right;
-  display: block;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--primary);
-  border-radius: 50%;
-  margin: 10px auto;
-  /* margin-left: 20px; */
-  line-height: 30px;
-  color: var(--primary);
-  font-weight: bold;
-  font-size: 24px;
-}
-
-.cross:hover{
-  background: var(--primary);
-  color: white;
+  font-size: 25px;
 }
 
 .form{

@@ -1,5 +1,6 @@
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Controller from './comps/Controller';
+import Home from './comps/Homepage/Home';
 import Title from './comps/Title';
 import EditForm from './comps/EditForm';
 import { projectFirestore } from './firebase/config';
@@ -24,6 +25,9 @@ function App() {
       <Title />
         <Switch>
           <Route exact path ="/">
+            <Home/>
+          </Route>
+          <Route exact path ="/inventory">
             <Controller/>
           </Route>
           <Route path="/edit/:id">

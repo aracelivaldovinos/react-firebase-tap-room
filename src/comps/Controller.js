@@ -3,16 +3,16 @@ import {useState} from 'react';
 
 import  useFirestore  from '../hooks/useFirestore';
 import { projectFirestore } from '../firebase/config';
-import BeerList from './BeerList';
+import Inventory from './Inventory';
 import AddForm from './AddForm';
 // import EditForm from './EditForm';
 
 
 
-const Home = () => {
+const Controller = () => {
   // const {error, loading} = useFetch('https://api.punkapi.com/v2/beers');
   const {docs} = useFirestore('Beers');
-  const [beersList, setBeersList] = useState(true);
+  const [inventory, setInventory] = useState(true);
   const [addForm, setAddForm] = useState(false);
   // const [editForm, setEditForm] = useState(false);
   const [button, setButton] = useState(true);
@@ -37,7 +37,7 @@ const Home = () => {
 
   const handleClickAdd = () =>{
     setAddForm(true);
-    setBeersList(false);
+    setInventory(false);
     // setEditForm(false);
     setButton(false);
   }
@@ -46,7 +46,7 @@ const Home = () => {
   // const handleClickEdit = (id) =>{
   //   console.log(id)
   //   setAddForm(false);
-  //   setBeersList(false);
+  //   setInventory(false);
   //   // setEditForm(true);
   //   setButton(false);
   // }
@@ -99,9 +99,9 @@ const Home = () => {
   // }
 
   return ( 
-    <div className="home">
-      {beersList && 
-        <BeerList 
+    <div className="Controller">
+      {inventory && 
+        <Inventory 
           docs={docs} 
           handleDelete={onClickingDelete} 
           // onClickEdit={handleClickEdit}
@@ -111,8 +111,9 @@ const Home = () => {
       {addForm && <AddForm handleSubmitForm={onClickingAdd}/>}
       {/* {editForm && <EditForm handleSubmitForm={onClickingEdit}/>} */}
       {button && <button onClick={handleClickAdd}>Add</button>}
+      
     </div>
    );
 }
  
-export default Home;
+export default Controller;

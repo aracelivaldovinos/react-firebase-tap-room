@@ -1,8 +1,18 @@
-import Card from 'react-bootstrap/Card'
 import {Link} from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 
+import './Item.css';
 
-const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete, handleRestock}) => {
+const Item = ({
+  name, 
+  tagline, 
+  keg, 
+  id, 
+  image_url, 
+  handleSell, 
+  handleDelete, 
+  handleRestock}) => {
+    
   let message = '';
   let sellButton
 
@@ -15,10 +25,10 @@ const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete, hand
     message = 'Out of Stock!';
   }
   return ( 
-    <div className="beer">
-      <Card style={{ width: '18rem', height: '30rem', marginBottom: '10px' }}>
-            <div className="cross" onClick={()=>handleDelete(id)}>x</div>
-            <Card.Img variant="top" src={image_url} style={{ height: '225px', width: '75px'}}/>
+    <div className="Item">
+      <Card className="card" style={{ width: '18rem', height: '30rem', marginBottom: '10px' }}>
+            <div className="cross" onClick={()=>handleDelete(id)}><p>x</p></div>
+            <Card.Img className="item-image" variant="top" src={image_url} style={{ height: '225px', width: '75px'}}/>
             <Card.Body className="card-body">
               <Card.Title>{name}</Card.Title>
               <Card.Text>
@@ -46,4 +56,4 @@ const Beer = ({name, tagline, keg, id, image_url, handleSell, handleDelete, hand
    );
 }
  
-export default Beer;
+export default Item;

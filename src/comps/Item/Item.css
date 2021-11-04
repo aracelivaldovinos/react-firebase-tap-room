@@ -1,0 +1,30 @@
+.cross{
+  /* float: left; */
+  /* display: block;  */
+  width: 25px;
+  height: 25px;
+  /* border: 1px solid var(--primary); */
+  border-radius: 50%;
+  margin: 5px;
+  /* line-height: 30px; */
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+
+.cross:hover{
+  background: var(--primary);
+  color: white;
+}
+.card{
+  text-align: center;
+}
+
+.item-image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

@@ -1,15 +1,15 @@
 import { Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Beer from './Beer';
+import Item from './Item/Item';
 
 
-const BeerList = ({docs, handleDelete, onClickEdit, handleSell, handleRestock}) => {
+const Inventory = ({docs, handleDelete, onClickEdit, handleSell, handleRestock}) => {
   return ( 
     <Row>
     {docs && docs.map((doc)=>(
       <Col>
         <div className="doc-div" key={doc.id}>
-          <Beer 
+          <Item
           name = {doc.name}
           tagline = {doc.tagline}
           keg = {doc.keg}
@@ -28,4 +28,4 @@ const BeerList = ({docs, handleDelete, onClickEdit, handleSell, handleRestock}) 
    );
 }
  
-export default BeerList;
+export default Inventory;
