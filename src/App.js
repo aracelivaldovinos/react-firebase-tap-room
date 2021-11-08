@@ -1,12 +1,17 @@
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { projectFirestore } from './firebase/config';
+import { useState } from 'react';
 
+import Navbar from './comps/Navbar';
 import Controller from './comps/Controller';
 import Home from './comps/Homepage/Home';
-import Title from './comps/Title';
 import EditForm from './comps/EditForm';
+import Login from './comps/Login';
 
 function App() {
+
+  const [logout, setLogout] = useState(false);
+  const [login, setLogin] = useState(true);
 
   const onClickingEdit = (beer, id) =>{
     projectFirestore.collection('Beers').doc(id).update({
@@ -21,18 +26,21 @@ function App() {
   return (
     <Router>
       <div className="App">
-      <Title />
-        <Switch>
-          <Route exact path ="/">
-            <Home/>
-          </Route>
-          <Route path ="/inventory">
-            <Controller/>
-          </Route>
-          <Route path="/edit/:id">
-            <EditForm handleSubmitForm={onClickingEdit}/>
-          </Route>
-        </Switch>
+        <Navbar logout={logout} login={login}/>
+          <Switch>
+            <Route exact path ="/">
+              <Home/>
+            </Route>
+            <Route path ="/login">
+              <Login setLogin={setLogin} setLogout={setLogout}/>
+            </Route>
+            <Route path ="/inventory">
+              <Controller />
+            </Route>
+            <Route path="/edit/:id">
+              <EditForm handleSubmitForm={onClickingEdit}/>
+            </Route>
+          </Switch>
       </div>
     </Router>
   );

@@ -32,7 +32,11 @@ const BeerList = ({docs}) => {
           </div>
           </Col>
         ))} 
-        {beerDetails && selectedDoc && <BeerDetails selectedDoc= {selectedDoc} /> }
+        {beerDetails && 
+        selectedDoc && 
+        <BeerDetails 
+          selectedDoc= {selectedDoc} 
+          setSelectedDoc={setSelectedDoc} /> }
     </Row>
    );
 };

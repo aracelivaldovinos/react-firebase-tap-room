@@ -1,10 +1,13 @@
 // import  useFetch  from '../hooks/useFetch';
 import {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
 import  useFirestore  from '../hooks/useFirestore';
 import { projectFirestore } from '../firebase/config';
+import { projectAuth } from '../firebase/config';
 import Inventory from './Inventory';
 import AddForm from './AddForm';
+import Login from './Login';
 // import EditForm from './EditForm';
 
 
@@ -12,6 +15,7 @@ import AddForm from './AddForm';
 const Controller = () => {
   // const {error, loading} = useFetch('https://api.punkapi.com/v2/beers');
   const {docs} = useFirestore('Beers');
+  const history = useHistory();
   const [inventory, setInventory] = useState(true);
   const [addForm, setAddForm] = useState(false);
   // const [editForm, setEditForm] = useState(false);
@@ -34,6 +38,8 @@ const Controller = () => {
   //    setError('Please select an image file (png or jpeg)')
   //  }
   // }
+
+  
 
   const handleClickAdd = () =>{
     setAddForm(true);
@@ -97,8 +103,12 @@ const Controller = () => {
   //     keg: beer.keg
   //   })
   // }
-
-  return ( 
+    if (projectAuth.currentUser === null) {
+        history.push("/login")
+        return(<Login />)
+    }
+    else {
+      return ( 
     <div className="Controller">
       {inventory && 
         <Inventory 
@@ -113,7 +123,8 @@ const Controller = () => {
       {button && <button onClick={handleClickAdd}>Add</button>}
       
     </div>
-   );
+   )
+  }
 }
  
 export default Controller;
