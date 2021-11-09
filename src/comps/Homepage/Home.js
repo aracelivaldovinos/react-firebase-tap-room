@@ -1,8 +1,9 @@
-import BeerList from './BeerList';
 import useFirestore from '../../hooks/useFirestore';
-const Home = () => {
-  const {docs} = useFirestore('Beers')
+import BeerList from './BeerList';
 
+
+const Home = () => {
+  const {docs} = useFirestore('Beers');
   return ( 
     <div className="homepage">
       <BeerList docs={docs}/>

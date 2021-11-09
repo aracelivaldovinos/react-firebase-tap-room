@@ -1,13 +1,13 @@
 // import  useFetch  from '../hooks/useFetch';
-import {useState} from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { projectFirestore } from '../../firebase/config';
+import { projectAuth } from '../../firebase/config';
 
-import  useFirestore  from '../hooks/useFirestore';
-import { projectFirestore } from '../firebase/config';
-import { projectAuth } from '../firebase/config';
+import useFirestore  from '../../hooks/useFirestore';
 import Inventory from './Inventory';
 import AddForm from './AddForm';
-import Login from './Login';
+import Login from '../Navbar/Login';
 import EditForm from './EditForm';
 
 
@@ -15,12 +15,12 @@ import EditForm from './EditForm';
 const Controller = () => {
   // const {error, loading} = useFetch('https://api.punkapi.com/v2/beers');
   const {docs} = useFirestore('Beers');
-  const history = useHistory();
   const [inventory, setInventory] = useState(true);
   const [addForm, setAddForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [button, setButton] = useState(true);
   const [id, setId] = useState(null);
+  const history = useHistory();
   
 
   // const [image_url, setImage_url ] = useState(null);
@@ -40,24 +40,20 @@ const Controller = () => {
   //  }
   // }
 
-  
-
   const handleClickAdd = () =>{
     setAddForm(true);
     setInventory(false);
-    // setEditForm(false);
+    setEditForm(false);
     setButton(false);
-  }
-
+  };
 
   const handleClickEdit = (id) =>{
     setId(id);
-    console.log(id)
     setAddForm(false);
     setInventory(false);
     setEditForm(true);
     setButton(false);
-  }
+  };
 
   const onClickingDelete = (id) =>{
     projectFirestore.collection('Beers').doc(id).delete();
@@ -71,8 +67,8 @@ const Controller = () => {
     const keg = {unit, value}
     projectFirestore.collection('Beers').doc(id).update({
       keg: keg
-    })
-  }
+    });
+  };
 
   const onClickingRestock = (id) =>{
     const restockKeg = docs.filter((doc)=>doc.id === id);
@@ -81,8 +77,8 @@ const Controller = () => {
     const keg = {unit, value};
     projectFirestore.collection('Beers').doc(id).update({
       keg: keg
-    })
-  }
+    });
+  };
 
   const onClickingAdd = (beer) =>{
     console.log(beer)
@@ -92,8 +88,9 @@ const Controller = () => {
       tagline: beer.tagline,
       // image_url: beer.image_url,
       keg: beer.keg
-  
     });
+    setInventory(true);
+    setAddForm(false);
   };
 
   const onClickingEdit = (beer) =>{
@@ -103,29 +100,32 @@ const Controller = () => {
       tagline: beer.tagline,
       // image_url: beer.image_url,
       keg: beer.keg
-    })
+    });
+    setEditForm(false);
+    setInventory(true);
+  };
+
+  if (projectAuth.currentUser === null) {
+    history.push("/login");
+    return(<Login />)
   }
-    if (projectAuth.currentUser === null) {
-        history.push("/login")
-        return(<Login />)
-    }
-    else {
-      return ( 
-    <div className="Controller">
-      {inventory && 
-        <Inventory 
-          docs={docs} 
-          handleDelete={onClickingDelete} 
-          onClickEdit={handleClickEdit}
-          handleSell={onClickingSell}
-          handleRestock={onClickingRestock}/>
-          }
-      {addForm && <AddForm handleSubmitForm={onClickingAdd}/>}
-      {editForm && <EditForm handleSubmitForm={onClickingEdit}/>}
-      {button && <button onClick={handleClickAdd}>Add</button>}
-      
-    </div>
-   )
+  else {
+    return ( 
+      <div className="Controller">
+        {inventory && 
+          <Inventory 
+            docs={docs} 
+            handleDelete={onClickingDelete} 
+            onClickEdit={handleClickEdit}
+            handleSell={onClickingSell}
+            handleRestock={onClickingRestock}
+          />
+        }
+        {addForm && <AddForm handleSubmitForm={onClickingAdd}/>}
+        {editForm && <EditForm handleSubmitForm={onClickingEdit}/>}
+        {button && <button onClick={handleClickAdd}>Add</button>}
+      </div>
+    );
   }
 }
  

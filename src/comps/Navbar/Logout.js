@@ -1,4 +1,4 @@
-import { projectAuth } from '../firebase/config';
+import { projectAuth } from "../../firebase/config";
 import { useHistory } from 'react-router';
 
 const Logout = ({setLogin, setLogout}) => {
@@ -17,7 +17,7 @@ const Logout = ({setLogin, setLogout}) => {
   };
   return ( 
     <div className="logout-link">
-        <div onClick={doSignOut}>
+        <div className="signout-btn" onClick={doSignOut}>
           Logout
         </div>
       </div>

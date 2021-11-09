@@ -1,18 +1,17 @@
 import ReusableForm from "./ReusableForm";
 
 const AddForm = (props) => {
-
   const handleSubmit = (e) =>{
     e.preventDefault();
-    const value = parseInt(e.target.amount.value)
-    const unit = e.target.units.value
-    const keg = {unit, value}
+    const value = parseInt(e.target.amount.value);
+    const unit = e.target.units.value;
+    const keg = {unit, value};
     props.handleSubmitForm({
       name: e.target.name.value,
       tagline: e.target.tagline.value,
       description: e.target.description.value,
       keg: keg
-    })
+    });
   };
 
   return ( 

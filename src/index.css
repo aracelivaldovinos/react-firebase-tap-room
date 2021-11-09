@@ -73,6 +73,28 @@ body{
   cursor: pointer;
 }
 
+.signout-btn{
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login-link{
+  background: var(--primary);
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login-link a{
+  text-decoration: none;
+  color: #fff;
+}
+
 /* .card-body{
   background-color: #4e4e4e;
 } */
@@ -95,3 +117,4 @@ body{
   border: 3px solid white;
   padding: 20px;
 }
+
