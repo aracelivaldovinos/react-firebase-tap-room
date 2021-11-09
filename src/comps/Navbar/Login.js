@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 
-import { projectAuth } from "../firebase/config";
+import { projectAuth } from "../../firebase/config";
 
 const Login = ({setLogin, setLogout}) => {
   const history = useHistory();
@@ -11,15 +11,15 @@ const Login = ({setLogin, setLogout}) => {
     const password = e.target.password.value
     projectAuth.signInWithEmailAndPassword(email, password)
     .then(() =>{
-      console.log("Your In!")
+      console.log("Your In!");
+      setLogin(false)
+      setLogout(true)
       history.push("/inventory")
     })
     .catch((error)=>{
       console.log(error.message);
       alert('failed to Log in')
     })
-    setLogin(false)
-    setLogout(true)
   }
 
   return (

@@ -8,7 +8,7 @@ import { projectAuth } from '../firebase/config';
 import Inventory from './Inventory';
 import AddForm from './AddForm';
 import Login from './Login';
-// import EditForm from './EditForm';
+import EditForm from './EditForm';
 
 
 
@@ -18,8 +18,9 @@ const Controller = () => {
   const history = useHistory();
   const [inventory, setInventory] = useState(true);
   const [addForm, setAddForm] = useState(false);
-  // const [editForm, setEditForm] = useState(false);
+  const [editForm, setEditForm] = useState(false);
   const [button, setButton] = useState(true);
+  const [id, setId] = useState(null);
   
 
   // const [image_url, setImage_url ] = useState(null);
@@ -49,13 +50,14 @@ const Controller = () => {
   }
 
 
-  // const handleClickEdit = (id) =>{
-  //   console.log(id)
-  //   setAddForm(false);
-  //   setInventory(false);
-  //   // setEditForm(true);
-  //   setButton(false);
-  // }
+  const handleClickEdit = (id) =>{
+    setId(id);
+    console.log(id)
+    setAddForm(false);
+    setInventory(false);
+    setEditForm(true);
+    setButton(false);
+  }
 
   const onClickingDelete = (id) =>{
     projectFirestore.collection('Beers').doc(id).delete();
@@ -94,15 +96,15 @@ const Controller = () => {
     });
   };
 
-  // const onClickingEdit = (beer, id) =>{
-  //   projectFirestore.collection('Beers').doc(id).update({
-  //     name: beer.name,
-  //     description: beer.description,
-  //     tagline: beer.tagline,
-  //     // image_url: beer.image_url,
-  //     keg: beer.keg
-  //   })
-  // }
+  const onClickingEdit = (beer) =>{
+    projectFirestore.collection('Beers').doc(id).update({
+      name: beer.name,
+      description: beer.description,
+      tagline: beer.tagline,
+      // image_url: beer.image_url,
+      keg: beer.keg
+    })
+  }
     if (projectAuth.currentUser === null) {
         history.push("/login")
         return(<Login />)
@@ -114,12 +116,12 @@ const Controller = () => {
         <Inventory 
           docs={docs} 
           handleDelete={onClickingDelete} 
-          // onClickEdit={handleClickEdit}
+          onClickEdit={handleClickEdit}
           handleSell={onClickingSell}
           handleRestock={onClickingRestock}/>
           }
       {addForm && <AddForm handleSubmitForm={onClickingAdd}/>}
-      {/* {editForm && <EditForm handleSubmitForm={onClickingEdit}/>} */}
+      {editForm && <EditForm handleSubmitForm={onClickingEdit}/>}
       {button && <button onClick={handleClickAdd}>Add</button>}
       
     </div>

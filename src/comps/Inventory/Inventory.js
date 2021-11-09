@@ -1,6 +1,6 @@
 import { Row, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Item from './Item/Item';
+import Item from './Inventory/Item/Item';
 
 
 const Inventory = ({docs, handleDelete, onClickEdit, handleSell, handleRestock}) => {

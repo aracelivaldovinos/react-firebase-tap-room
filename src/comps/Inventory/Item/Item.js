@@ -11,7 +11,8 @@ const Item = ({
   image_url, 
   handleSell, 
   handleDelete, 
-  handleRestock}) => {
+  handleRestock,
+  onClickEdit}) => {
     
   let message = '';
   let sellButton
@@ -42,12 +43,7 @@ const Item = ({
                   </div>
                   {sellButton}
                   <button onClick={()=>handleRestock(id)}>Restock</button>
-                  
-                  <button>
-                    <Link to={`/edit/${id}`}>
-                    Edit
-                    </Link>
-                  </button>
+                  <button onClick={()=>onClickEdit(id)}>Edit</button>
                 </div>
               </Card.Text>
             </Card.Body>
