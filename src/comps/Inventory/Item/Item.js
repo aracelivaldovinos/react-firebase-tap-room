@@ -1,3 +1,4 @@
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import './Item.css';
 
@@ -17,11 +18,11 @@ const Item = ({
 
   if (keg.value !== 0){
     if (keg.value < 10){
-      message = 'Almost Out!';
+      message = <Alert variant="warning">Almost Out!</Alert>;
     }
     sellButton= <button onClick={()=>handleSell(id)}>Sell</button>
   }else{
-    message = 'Out of Stock!';
+    message = <Alert variant="danger">Out of Stock!</Alert>;
   }
   return ( 
     <div className="Item">
@@ -38,9 +39,7 @@ const Item = ({
             </div>
             <div className="amount">
               <h2>Pints: {keg.value}</h2>
-              <div className="message">
-                {message}
-              </div>
+              {message}
               {sellButton}
               <button onClick={()=>handleRestock(id)}>Restock</button>
               <button onClick={()=>onClickEdit(id)}>Edit</button>

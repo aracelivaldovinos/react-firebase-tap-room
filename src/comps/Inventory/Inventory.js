@@ -22,7 +22,7 @@ const Inventory = ({docs, handleDelete, onClickEdit, handleSell, handleRestock})
             />
           </div>
         </Col>
-      ))};
+      ))}
     </Row>
   );
 }

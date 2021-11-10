@@ -118,3 +118,20 @@ body{
   padding: 20px;
 }
 
+.warning{
+  background-color: rgb(247, 193, 19);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  /* visibility: hidden; */
+}
+
+.sold-out{
+  background-color:red;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
