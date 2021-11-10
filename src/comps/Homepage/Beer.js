@@ -8,16 +8,17 @@ const Beer = ({name, tagline, image_url}) => {
         <Card.Body className="card-body" style={{marginTop: '15px',  background: 'rgba(78,78,78,0.1)'}}>
           <Card.Title 
             style={{
-              color:'#fff', 
-              backgroundColor: 'rgba(239,182,178,0.6)', 
-              padding: '20px', borderRadius:'4px'}}>
+              color: 'rgba(255,74,74,0.7)', 
+              padding: '2px',
+              borderRadius:'4px',
+              }}>
             <h3>
               <span>{name}</span>
             </h3>
           </Card.Title>
           <Card.Text >
-            <div className="tagline">
-              {tagline}
+            <div className="tagline" style={{color: '#4e4e4e'}}>
+              <span>{tagline}</span>
             </div>
           </Card.Text>
         </Card.Body>
