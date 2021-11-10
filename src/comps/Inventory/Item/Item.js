@@ -1,5 +1,6 @@
 import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
+import {AiFillCloseCircle} from "react-icons/ai";
 import './Item.css';
 
 const Item = ({
@@ -26,20 +27,20 @@ const Item = ({
   }
   return ( 
     <div className="Item">
-      <Card className="card" style={{ width: '18rem', height: '30rem', marginBottom: '10px' }}>
+      <Card className="card" style={{ width: '18rem', height: '35rem', marginBottom: '10px' }}>
         <div className="cross" onClick={()=>handleDelete(id)}>
-          <p>x</p>
+          <AiFillCloseCircle style={{float: 'left', paddingTop: '2px', marginBottom: '20px', cursor:'pointer'}}/>
         </div>
+        {message}
         <Card.Img className="item-image" variant="top" src={image_url} style={{ height: '225px', width: '75px'}}/>
-        <Card.Body className="card-body">
+        <Card.Body className="card-body" style={{marginTop: '15px',  background: 'rgba(78,78,78,0.2)'}}>
           <Card.Title>{name}</Card.Title>
           <Card.Text>
             <div className="tagline">
               {tagline}
             </div>
-            <div className="amount">
+            <div className="amount" style={{marginTop: '15px'}}>
               <h2>Pints: {keg.value}</h2>
-              {message}
               {sellButton}
               <button onClick={()=>handleRestock(id)}>Restock</button>
               <button onClick={()=>onClickEdit(id)}>Edit</button>

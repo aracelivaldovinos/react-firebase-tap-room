@@ -29,17 +29,55 @@ body{
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: rgb(78, 78, 78, 0.5);
+}
+.sign-form{
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.sign-form label{
+  text-align: left;
+  display: block;
+  color: #fff;
+}
+
+.sign-form input{
+  width: 100%;
+  height: 50px;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+  font-size: 16px;
+}
+
+.sign-form button{
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .form label {
   text-align: left;
   display: block;
+  color: #fff;
 }
 
 .form h2 {
   font-size: 20px;
-  color: #4e4e4e;
+  /* color: #4e4e4e; */
   margin-bottom: 10px;
+  color: #fff;
 }
 
 .form input {
@@ -88,16 +126,29 @@ body{
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  color: #fff;
 }
 
-.login-link a{
-  text-decoration: none;
+.homelink{
+  background: var(--primary);
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
   color: #fff;
 }
 
 /* .card-body{
   background-color: #4e4e4e;
 } */
+
+.card{
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover{
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.3);
+}
 
 .beer-details{
   position: fixed;
@@ -133,5 +184,23 @@ body{
   border: 0;
   padding: 8px;
   border-radius: 8px;
+}
+
+.add{
+  display: block;
+  width: 35px;
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  margin: 10px auto;
+  line-height: 30px;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+}
+
+.add:hover{
+  background: var(--primary);
+  color: white;
 }
 

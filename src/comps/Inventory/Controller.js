@@ -55,6 +55,13 @@ const Controller = () => {
     setButton(false);
   };
 
+  const handleClickBackBtn = () => {
+    setAddForm(false);
+    setInventory(true);
+    setEditForm(false);
+    setButton(true);
+  }
+
   const onClickingDelete = (id) =>{
     projectFirestore.collection('Beers').doc(id).delete();
   }
@@ -89,8 +96,9 @@ const Controller = () => {
       // image_url: beer.image_url,
       keg: beer.keg
     });
-    setInventory(true);
     setAddForm(false);
+    setInventory(true);
+    setButton(true);
   };
 
   const onClickingEdit = (beer) =>{
@@ -103,6 +111,7 @@ const Controller = () => {
     });
     setEditForm(false);
     setInventory(true);
+    setButton(true);
   };
 
   if (projectAuth.currentUser === null) {
@@ -112,6 +121,13 @@ const Controller = () => {
   else {
     return ( 
       <div className="Controller">
+        {button && 
+          <button title="Add a keg" 
+            className="add" 
+            onClick={handleClickAdd}>
+            <span>+</span>
+          </button>
+        }
         {inventory && 
           <Inventory 
             docs={docs} 
@@ -121,9 +137,8 @@ const Controller = () => {
             handleRestock={onClickingRestock}
           />
         }
-        {addForm && <AddForm handleSubmitForm={onClickingAdd}/>}
-        {editForm && <EditForm handleSubmitForm={onClickingEdit}/>}
-        {button && <button onClick={handleClickAdd}>Add</button>}
+        {addForm && <AddForm handleSubmitForm={onClickingAdd} backBtn={handleClickBackBtn}/>}
+        {editForm && <EditForm handleSubmitForm={onClickingEdit} backBtn={handleClickBackBtn}/>}
       </div>
     );
   }

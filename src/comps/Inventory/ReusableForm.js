@@ -1,4 +1,6 @@
-const ReusableForm = (props) => {
+
+
+const ReusableForm = (props,{backBtn}) => {
   return (
     <div className="form">
       <form onSubmit={props.form}>
@@ -53,7 +55,7 @@ const ReusableForm = (props) => {
           name="description"
           placeholder="Dark and powerful Islay magic infuses this tropical sensation of an IPA..."
         >
-        </textarea>  
+        </textarea> 
         <button type="submit">Submit</button>
       </form>
     </div>

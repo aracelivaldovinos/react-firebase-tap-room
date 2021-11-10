@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 
 import { projectAuth } from "../../firebase/config";
 
-const Login = ({setLogin, setLogout}) => {
+const Login = ({setLogin, setLogout, setHome}) => {
   const history = useHistory();
 
   const doSignIn = (e) => {
@@ -12,18 +12,19 @@ const Login = ({setLogin, setLogout}) => {
     projectAuth.signInWithEmailAndPassword(email, password)
     .then(() =>{
       console.log("Your In!");
-      setLogin(false)
-      setLogout(true)
-      history.push("/inventory")
+      setLogin(false);
+      setHome(false);
+      setLogout(true);
+      history.push("/inventory");
     })
     .catch((error)=>{
       console.log(error.message);
-      alert('failed to Log in')
+      alert('failed to Log in');
     })
   }
 
   return (
-    <div className="form">
+    <div className="sign-form">
       <h1>Sign In</h1>
          <form onSubmit={doSignIn}>
     <input

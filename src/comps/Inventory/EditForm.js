@@ -1,4 +1,5 @@
 import ReusableForm from "./ReusableForm";
+import {FaArrowCircleLeft} from "react-icons/fa";
 
 const EditForm = (props) => {
   const handleSubmit = (e) =>{
@@ -15,6 +16,9 @@ const EditForm = (props) => {
   }
   return ( 
     <div className="form">
+      <div>
+        <FaArrowCircleLeft title="Go back" onClick={props.backBtn} style={{height: '24px', width: '24px', margin: '10px', float: 'left', cursor:'pointer'}}/>
+      </div>
       <ReusableForm form={handleSubmit}/>
     </div>
    );
