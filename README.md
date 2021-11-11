@@ -13,9 +13,10 @@
 
 
 ## Description
-_A tap room application built in React where a brewery store can track their kegs and their remaining amount. Application has full CRUD functionality, admin is able to create, read, update and delete an item. [PunkAPI]( https://api.punkapi.com/) is used to populate firestore database. In addition, application has only one user, an admin, other users that do not have authorization can only Read the application._
+_A tap room application built in React where a brewery store can track their kegs and their remaining amount. Application has full CRUD functionality, admin is able to create, read, update and delete an item. [PunkAPI](https://punkapi.com/) is used to populate firestore database. In addition, application has only one user, an admin, other users that do not have authorization can only read the application. To access admin side of the application use the following credentials:_
+_Email: admin@admintest.com_
+_Password: admin123_
 
-!(taproom-clip.mp4)
 
 ## Setup/Installation Requirements
 
